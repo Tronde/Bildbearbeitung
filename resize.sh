@@ -1,11 +1,44 @@
 #!/bin/bash
 # Bildgroesse reduzieren und Seitenverhaeltnis beibehalten
 # Die gewuenschte Aufloesung wird abgefragt
+# oder kann als Parameter uebergeben werden.
 # Author: Joerg Kastning
 # Lizenz: GPLv3
 
+# Functions ############################################################### #
+usage()
+{
+cat << EOF
+usage: $0 options
+Dieses Script reduziert die Bildgröße unter Beibehaltung des Seitenverhältnisses.
+
+OPTIONS:
+-h Show this message
+-a Auflösung (z.B. 1600)
+EOF
+}
+
+while getopts .h:a:. OPTION
+do
+	case $OPTION in
+		h)
+			usage
+			exit;;
+		a)
+			aufloesung=$OPTARG
+			;;
+		?)
+			usage
+			exit;;
+	esac
+done
+
+if [[ -z $aufloesung ]]; then
+	read -p "Bitte die gewünschte Auflösung eingeben (z.B. 1600): " aufloesung
+fi
+
 # Programmbeginn
-read -p "Bitte die gewünschte Auflösung eingeben (z.B. 1600): " aufloesung
+#read -p "Bitte die gewünschte Auflösung eingeben (z.B. 1600): " aufloesung
 ls -1 *.JPG *.jpg | while read file;
  do {
 	mogrify -resize "$aufloesung"x"$aufloesung" "$file"
