@@ -5,12 +5,12 @@
 Textabstandvonlinks=10
 Textabstandvonunten=10
 Schriftgroesse=10
-PfadFonts="/usr/share/fonts/truetype/msttcorefonts"
+PfadFonts="/usr/share/fonts/truetype/freefont"
 # Pfad ist je nach Distribution unterschiedlich!
-Schriftart="Arial.ttf"
+Schriftart="FreeSans.ttf"
 Schriftfarbe="white"
 # Moegliche Farben koennen aufgelistet werden mit dem Befehl: convert -list color
-Wasserzeichentext="Copyright Joerg Kastning & Barbara Pohl - Urlaub in Istrien/Kroatien 2013"
+Wasserzeichentext="Copyright 2015 by Joerg und Barbara Kastning"
 
 # Programmbeginn
 echo "Textabstand von links: $Textabstandvonlinks"
@@ -26,7 +26,7 @@ horizontal=`identify -verbose $file | grep Geometry: | awk {'print $2'} |cut -d"
 vertikal=`identify -verbose $file | grep Geometry: | awk {'print $2'} |cut -d"x" -f 2`
 X=$Textabstandvonlinks
 Y=$(($vertikal - $Textabstandvonunten))
-convert -font $PfadFonts/$Schriftart -pointsize $Schriftgroesse -fill $Schriftfarbe -draw "text $X, $Y '$Wasserzeichentext'" "$file" "`basename Wasserzeichen_"$file"`";
+convert -font $PfadFonts/$Schriftart -pointsize $Schriftgroesse -fill $Schriftfarbe -draw "text $X, $Y '$Wasserzeichentext'" "$file" "`basename Wz_"$file"`";
 echo "Bearbeite Datei $file"
 }
 done
