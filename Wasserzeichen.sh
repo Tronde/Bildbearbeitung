@@ -10,7 +10,7 @@ PfadFonts="/usr/share/fonts/truetype/freefont"
 Schriftart="FreeSans.ttf"
 Schriftfarbe="white"
 # Moegliche Farben koennen aufgelistet werden mit dem Befehl: convert -list color
-Wasserzeichentext="Copyright 2015 by Joerg und Barbara Kastning"
+Wasserzeichentext="Copyright 2015 by Joerg Kastning"
 
 # Programmbeginn
 echo "Textabstand von links: $Textabstandvonlinks"
@@ -20,7 +20,7 @@ echo "Schriftart: $Schriftart"
 echo "Schriftfarbe: $Schriftfarbe"
 echo "Wasserzeichentext: $Wasserzeichentext"
 echo " "
-ls -1 *.JPG *.jpg | while read file;
+ls -1 *.JPG *.jpg *.PNG *.png | while read file;
  do {
 horizontal=`identify -verbose $file | grep Geometry: | awk {'print $2'} |cut -d"x" -f 1`
 vertikal=`identify -verbose $file | grep Geometry: | awk {'print $2'} |cut -d"x" -f 2`
