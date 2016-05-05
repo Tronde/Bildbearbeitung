@@ -10,7 +10,7 @@ PfadFonts="/usr/share/fonts/truetype/freefont"
 Schriftart="FreeSans.ttf"
 Schriftfarbe="white"
 # Moegliche Farben koennen aufgelistet werden mit dem Befehl: convert -list color
-Wasserzeichentext="Copyright 2015 by Joerg Kastning"
+Wasserzeichentext="Copyright 2016 by Joerg Kastning"
 
 # Programmbeginn
 echo "Textabstand von links: $Textabstandvonlinks"
@@ -20,15 +20,14 @@ echo "Schriftart: $Schriftart"
 echo "Schriftfarbe: $Schriftfarbe"
 echo "Wasserzeichentext: $Wasserzeichentext"
 echo " "
-ls -1 *.JPG *.jpg *.PNG *.png | while read file;
- do {
-horizontal=`identify -verbose $file | grep Geometry: | awk {'print $2'} |cut -d"x" -f 1`
-vertikal=`identify -verbose $file | grep Geometry: | awk {'print $2'} |cut -d"x" -f 2`
-X=$Textabstandvonlinks
-Y=$(($vertikal - $Textabstandvonunten))
-convert -font $PfadFonts/$Schriftart -pointsize $Schriftgroesse -fill $Schriftfarbe -draw "text $X, $Y '$Wasserzeichentext'" "$file" "`basename Wz_"$file"`";
-echo "Bearbeite Datei $file"
-}
+for file in *.JPG *.jpg *.PNG *.png
+ do 
+    horizontal=`identify -verbose $file | grep Geometry: | awk {'print $2'} |cut -d"x" -f 1`
+    vertikal=`identify -verbose $file | grep Geometry: | awk {'print $2'} |cut -d"x" -f 2`
+    X=$Textabstandvonlinks
+    Y=$(($vertikal - $Textabstandvonunten))
+    convert -font $PfadFonts/$Schriftart -pointsize $Schriftgroesse -fill $Schriftfarbe -draw "text $X, $Y '$Wasserzeichentext'" "$file" "`basename Wz_"$file"`";
+    echo "Bearbeite Datei $file"
 done
 echo "Wasserzeichen wurden erfolgreich eingearbeitet"
 exit

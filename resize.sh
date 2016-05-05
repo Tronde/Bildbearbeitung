@@ -11,6 +11,8 @@ usage()
 cat << EOF
 usage: $0 options
 Dieses Script reduziert die Bildgröße unter Beibehaltung des Seitenverhältnisses.
+Es wird in dem Verzeichnis ausgefuehrt, in dem sich die zu verkleinernden Bilder
+befinden.
 
 OPTIONS:
 -h Show this message
@@ -39,11 +41,10 @@ fi
 
 # Programmbeginn
 #read -p "Bitte die gewünschte Auflösung eingeben (z.B. 1600): " aufloesung
-ls -1 *.JPG *.jpg | while read file;
- do {
-	mogrify -resize "$aufloesung"x"$aufloesung" "$file"
+for file in *.JPG *.jpg
+ do
+	mogrify -resize "${aufloesung}"x"${aufloesung}" "$file"
 	echo "Bild $file wird verkleinert."
- }
 done
 echo "Die Bearbeitung ist beendet."
 exit
