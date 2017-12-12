@@ -4,7 +4,7 @@
 # Beschreibung:
 # Dieses Skript dient der Verarbeitung von JPEG-Dateien. Es wertet das
 # Attribut 'EXIF DateTimeOriginal' aus und benennt die verbeiteten Dateien
-# um, so dass diese dem Muster <YYYY-MM-DD_img_NUMBER> entsprechen.
+# um, so dass diese dem Muster '<YYYY-MM-DD>_img.jpg' entsprechen.
 #
 # Autor:    Tronde (https://ubuntuusers.de/user/Tronde/)
 # Lizenz:   GPLv3 (http://www.gnu.de/documents/gpl.de.html)
